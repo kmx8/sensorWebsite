@@ -10,8 +10,9 @@ if(!$db) {
 	die("Connection failed: " . mysqli_connect_error() . "\n");
 }
 
-$sql = "SELECT * from sensor.vpd";
-$res = mysqli_query($db, $sql);
+$sql1= "Select * from sensor.vpd Where UID = (Select UID from sensor.UserUID where User = 'Vise') Order by sensor.vpd.time DESC Limit 20;";
+
+$res = mysqli_query($db, $sql1);
 
 $tempArr = array();
 while($row = mysqli_fetch_assoc($res)) {
